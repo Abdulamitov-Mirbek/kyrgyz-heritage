@@ -1,7 +1,7 @@
-import React from "react";
+﻿import React from "react";
 import { useTranslation } from "react-i18next";
 import { Globe } from "lucide-react";
-import LanguageSwitcher from "../LanguageSwitcher";
+// ❌ REMOVE THIS LINE: import LanguageSwitcher from "../../components/LanguageSwitcher";
 
 const LanguageSwitcher = () => {
   const { i18n } = useTranslation();
@@ -71,36 +71,23 @@ const LanguageSwitcher = () => {
 };
 
 {
-  /* Direct language buttons - TEST */
+  /* Bright test element - CAN YOU SEE THIS? */
 }
-<div className="flex items-center gap-2 px-2">
-  <button
-    onClick={() => {
-      const { i18n } = useTranslation();
-      i18n.changeLanguage("ru");
-    }}
-    className="px-3 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg text-sm font-bold"
-  >
-    🇷🇺 RU
-  </button>
-  <button
-    onClick={() => {
-      const { i18n } = useTranslation();
-      i18n.changeLanguage("kg");
-    }}
-    className="px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm font-bold"
-  >
-    🇰🇬 KG
-  </button>
-  <button
-    onClick={() => {
-      const { i18n } = useTranslation();
-      i18n.changeLanguage("en");
-    }}
-    className="px-3 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg text-sm font-bold"
-  >
-    🇬🇧 EN
-  </button>
+<div
+  style={{
+    background: "limegreen",
+    padding: "10px 20px",
+    borderRadius: "8px",
+    color: "black",
+    fontWeight: "bold",
+    fontSize: "16px",
+    position: "fixed",
+    top: "10px",
+    right: "10px",
+    zIndex: 9999,
+  }}
+>
+  🌐 TEST - Language Switcher Area
 </div>;
 
 export default LanguageSwitcher;

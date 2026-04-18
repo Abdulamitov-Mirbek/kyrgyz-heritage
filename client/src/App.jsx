@@ -1,13 +1,13 @@
-﻿import React from 'react';
+import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Header from './components/Layout/Header.jsx';
-import Footer from './components/Layout/Footer.jsx';
+import Header from './commponents/Layout/Header.jsx';
+import Footer from './commponents/Layout/Footer.jsx';
 import HomePage from './pages/HomePage.jsx';
 import MapPage from './pages/MapPage.jsx';
 import SitePage from './pages/SitePage.jsx';
 import SubmitPage from './pages/SubmitPage.jsx';
 import AboutPage from './pages/AboutPage.jsx';
-import SiteList from './components/Sites/SiteList.jsx';
+import SiteList from './commponents/Sites/SiteList.jsx';
 import LoginPage from './pages/LoginPage.jsx';
 import RegisterPage from './pages/RegisterPage.jsx';
 import AdminPage from './pages/AdminPage.jsx';
