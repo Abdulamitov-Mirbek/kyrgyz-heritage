@@ -1,11 +1,14 @@
+// THIS MUST BE THE VERY FIRST LINE
+require('dotenv').config();
+
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
-require('dotenv').config();
+const aiRoutes = require('./routes/aiRoutes');
 
-// Import routes (we'll create these later)
+// Import routes
 const authRoutes = require('./routes/authRoutes');
 const siteRoutes = require('./routes/siteRoutes');
 const uploadRoutes = require('./routes/uploadRoutes');
@@ -27,13 +30,21 @@ app.use(cors({
   credentials: true
 }));
 
-// Rate limiting
-const limiter = rateLimit({
+// Rate limiting ONLY for auth routes (prevent brute force)
+const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100 // limit each IP to 100 requests per windowMs
+  max: 50, // 50 requests per 15 minutes
+  message: {
+    success: false,
+    error: 'Too many authentication attempts, please try again later.'
+  },
+  skipSuccessfulRequests: true,
 });
-app.use('/api/', limiter);
 
+// Apply auth rate limiter only to auth routes
+app.use('/api/auth', authLimiter);
+
+// NO RATE LIMITING FOR MAP/SITES ENDPOINTS!
 // Body parsing middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -43,6 +54,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/sites', siteRoutes);
 app.use('/api/upload', uploadRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/ai', aiRoutes);
 
 // Health check endpoint
 app.get('/health', (req, res) => {
@@ -56,10 +68,19 @@ app.get('/health', (req, res) => {
 // Error handling middleware
 app.use(errorHandler);
 
+// Check if MONGODB_URI is defined
+if (!process.env.MONGODB_URI) {
+  console.error('ERROR: MONGODB_URI is not defined in .env file');
+  console.log('Using default: mongodb://localhost:27017/cultural-heritage');
+}
+
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/cultural-heritage';
+
 // Database connection
 const connectDB = async () => {
   try {
-    const conn = await mongoose.connect(process.env.MONGODB_URI);
+    console.log('Connecting to MongoDB at:', MONGODB_URI);
+    const conn = await mongoose.connect(MONGODB_URI);
     console.log(`MongoDB Connected: ${conn.connection.host}`);
   } catch (error) {
     console.error(`Error: ${error.message}`);
@@ -72,12 +93,11 @@ connectDB();
 // Start server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`);
+  console.log(`Server running in ${process.env.NODE_ENV || 'development'} mode on port ${PORT}`);
 });
 
 // Handle unhandled promise rejections
 process.on('unhandledRejection', (err, promise) => {
   console.log(`Error: ${err.message}`);
-  // Close server & exit process
   process.exit(1);
 });

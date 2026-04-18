@@ -1,99 +1,59 @@
-const axios = require('axios');
+// Use ES module imports if your project uses "type": "module"
+import axios from "axios";
 
 class Geocoder {
   constructor() {
     this.apiKey = process.env.GOOGLE_MAPS_API_KEY;
-    this.baseUrl = 'https://maps.googleapis.com/maps/api/geocode/json';
+    this.baseUrl = "https://maps.googleapis.com/maps/api/geocode/json";
   }
 
   async geocodeAddress(address) {
     try {
-      if (!this.apiKey) {
-        console.warn('No Google Maps API key provided. Using fallback geocoding.');
-        return this.fallbackGeocode(address);
-      }
-
-      const response = await axios.get(this.baseUrl, {
-        params: {
-          address: address,
-          key: this.apiKey
-        }
-      });
-
-      if (response.data.status === 'OK' && response.data.results.length > 0) {
-        const result = response.data.results[0];
-        return {
-          coordinates: [
-            result.geometry.location.lng,
-            result.geometry.location.lat
-          ],
-          formattedAddress: result.formatted_address,
-          placeId: result.place_id,
-          components: this.parseAddressComponents(result.address_components)
-        };
-      } else {
-        throw new Error(`Geocoding failed: ${response.data.status}`);
-      }
+      // Since you don't have a Google Maps API key, always use fallback
+      console.log("Geocoding address:", address);
+      return this.fallbackGeocode(address);
     } catch (error) {
-      console.error('Geocoding error:', error.message);
+      console.error("Geocoding error:", error.message);
       return this.fallbackGeocode(address);
     }
   }
 
   async reverseGeocode(lng, lat) {
     try {
-      if (!this.apiKey) {
-        console.warn('No Google Maps API key provided. Using fallback reverse geocoding.');
-        return this.fallbackReverseGeocode(lng, lat);
-      }
-
-      const response = await axios.get(this.baseUrl, {
-        params: {
-          latlng: `${lat},${lng}`,
-          key: this.apiKey
-        }
-      });
-
-      if (response.data.status === 'OK' && response.data.results.length > 0) {
-        const result = response.data.results[0];
-        return {
-          formattedAddress: result.formatted_address,
-          placeId: result.place_id,
-          components: this.parseAddressComponents(result.address_components)
-        };
-      } else {
-        throw new Error(`Reverse geocoding failed: ${response.data.status}`);
-      }
+      console.log("Reverse geocoding:", lng, lat);
+      return this.fallbackReverseGeocode(lng, lat);
     } catch (error) {
-      console.error('Reverse geocoding error:', error.message);
+      console.error("Reverse geocoding error:", error.message);
       return this.fallbackReverseGeocode(lng, lat);
     }
   }
 
   parseAddressComponents(components) {
     const parsed = {
-      streetNumber: '',
-      route: '',
-      locality: '',
-      administrativeArea: '',
-      country: '',
-      postalCode: ''
+      streetNumber: "",
+      route: "",
+      locality: "",
+      administrativeArea: "",
+      country: "",
+      postalCode: "",
     };
 
-    components.forEach(component => {
+    if (!components) return parsed;
+
+    components.forEach((component) => {
       const types = component.types;
 
-      if (types.includes('street_number')) {
+      if (types.includes("street_number")) {
         parsed.streetNumber = component.long_name;
-      } else if (types.includes('route')) {
+      } else if (types.includes("route")) {
         parsed.route = component.long_name;
-      } else if (types.includes('locality')) {
+      } else if (types.includes("locality")) {
         parsed.locality = component.long_name;
-      } else if (types.includes('administrative_area_level_1')) {
+      } else if (types.includes("administrative_area_level_1")) {
         parsed.administrativeArea = component.long_name;
-      } else if (types.includes('country')) {
+      } else if (types.includes("country")) {
         parsed.country = component.long_name;
-      } else if (types.includes('postal_code')) {
+      } else if (types.includes("postal_code")) {
         parsed.postalCode = component.long_name;
       }
     });
@@ -101,38 +61,103 @@ class Geocoder {
     return parsed;
   }
 
-  // Fallback methods for when no API key is available
+  // Fallback geocoding for Kyrgyzstan
   fallbackGeocode(address) {
-    console.log('Using fallback geocoding for:', address);
-    // Return a default location (you might want to use a free geocoding service here)
+    console.log("Using fallback geocoding for:", address);
+
+    // Kyrgyzstan approximate center coordinates
+    let coordinates = [74.5698, 42.8746]; // Bishkek default
+
+    // Try to extract city/region from address for better accuracy
+    const lowerAddress = address.toLowerCase();
+
+    if (lowerAddress.includes("бишкек") || lowerAddress.includes("bishkek")) {
+      coordinates = [74.5698, 42.8746];
+    } else if (lowerAddress.includes("ош") || lowerAddress.includes("osh")) {
+      coordinates = [72.7833, 40.5333];
+    } else if (
+      lowerAddress.includes("жалал-абад") ||
+      lowerAddress.includes("jalal-abad")
+    ) {
+      coordinates = [73.0, 40.9333];
+    } else if (
+      lowerAddress.includes("каракол") ||
+      lowerAddress.includes("karakol")
+    ) {
+      coordinates = [78.3833, 42.4833];
+    } else if (
+      lowerAddress.includes("нарын") ||
+      lowerAddress.includes("naryn")
+    ) {
+      coordinates = [75.9833, 41.4333];
+    } else if (
+      lowerAddress.includes("талас") ||
+      lowerAddress.includes("talas")
+    ) {
+      coordinates = [72.2333, 42.5167];
+    } else if (
+      lowerAddress.includes("батык") ||
+      lowerAddress.includes("batken")
+    ) {
+      coordinates = [70.8167, 40.0667];
+    } else if (
+      lowerAddress.includes("иссык-куль") ||
+      lowerAddress.includes("issyk-kul")
+    ) {
+      coordinates = [77.0, 42.4167];
+    }
+
     return {
-      coordinates: [0, 0],
+      coordinates: coordinates,
       formattedAddress: address,
       placeId: null,
       components: {
-        streetNumber: '',
-        route: '',
-        locality: '',
-        administrativeArea: '',
-        country: '',
-        postalCode: ''
-      }
+        streetNumber: "",
+        route: "",
+        locality: address.split(",")[0] || "",
+        administrativeArea: address.split(",")[1] || "",
+        country: "Кыргызстан",
+        postalCode: "",
+      },
     };
   }
 
   fallbackReverseGeocode(lng, lat) {
-    console.log('Using fallback reverse geocoding for:', lng, lat);
+    console.log("Using fallback reverse geocoding for:", lng, lat);
+
+    // Determine approximate location based on coordinates
+    let city = "Бишкек";
+    let region = "Чуйская область";
+
+    // Rough bounds for Kyrgyz cities
+    if (lng > 72.5 && lng < 73.0 && lat > 40.4 && lat < 40.7) {
+      city = "Ош";
+      region = "Ошская область";
+    } else if (lng > 72.5 && lng < 73.5 && lat > 42.3 && lat < 42.6) {
+      city = "Талас";
+      region = "Таласская область";
+    } else if (lng > 78.0 && lng < 78.5 && lat > 42.3 && lat < 42.6) {
+      city = "Каракол";
+      region = "Иссык-Кульская область";
+    } else if (lng > 75.5 && lng < 76.5 && lat > 41.2 && lat < 41.6) {
+      city = "Нарын";
+      region = "Нарынская область";
+    } else if (lng > 72.5 && lng < 73.5 && lat > 40.7 && lat < 41.1) {
+      city = "Джалал-Абад";
+      region = "Джалал-Абадская область";
+    }
+
     return {
-      formattedAddress: `Location at ${lat}, ${lng}`,
+      formattedAddress: `${city}, ${region}, Кыргызстан`,
       placeId: null,
       components: {
-        streetNumber: '',
-        route: '',
-        locality: '',
-        administrativeArea: '',
-        country: '',
-        postalCode: ''
-      }
+        streetNumber: "",
+        route: "",
+        locality: city,
+        administrativeArea: region,
+        country: "Кыргызстан",
+        postalCode: "",
+      },
     };
   }
 
@@ -141,18 +166,26 @@ class Geocoder {
     const R = 6371; // Radius of the earth in km
     const dLat = this.deg2rad(lat2 - lat1);
     const dLon = this.deg2rad(lon2 - lon1);
-    const a = 
-      Math.sin(dLat/2) * Math.sin(dLat/2) +
-      Math.cos(this.deg2rad(lat1)) * Math.cos(this.deg2rad(lat2)) * 
-      Math.sin(dLon/2) * Math.sin(dLon/2);
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    const a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(this.deg2rad(lat1)) *
+        Math.cos(this.deg2rad(lat2)) *
+        Math.sin(dLon / 2) *
+        Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     const distance = R * c; // Distance in km
     return distance;
   }
 
   deg2rad(deg) {
-    return deg * (Math.PI/180);
+    return deg * (Math.PI / 180);
   }
 }
 
-module.exports = new Geocoder();
+// Export as singleton
+export default new Geocoder();
+
+// Also support CommonJS require
+if (typeof module !== "undefined" && module.exports) {
+  module.exports = new Geocoder();
+}

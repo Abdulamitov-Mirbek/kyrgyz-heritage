@@ -211,5 +211,65 @@
     },
     "contact_us": "Contact Us",
     "contact_text": "Have questions or want to get involved? Reach out to us:"
+  },
+  "about": {
+    "title": "About Amanat",
+    "subtitle": "Preserving the sacred heritage of Kyrgyzstan for future generations",
+    "what_is_amanat": "What is \"Amanat\"?",
+    "amanat_meaning": "Amanat is something entrusted for safekeeping, a legacy we must pass on to future generations.",
+    "sacred_heritage": "Sacred Heritage",
+    "sacred_heritage_desc": "Sacred mountains, mazars, springs, and places of power",
+    "traditions": "Traditions",
+    "traditions_desc": "Rituals and customs passed down from generation to generation",
+    "oral_histories": "Oral Histories",
+    "oral_histories_desc": "Legends, stories, and tales from elders",
+    "sacred_categories": "Types of Sacred Places",
+    "sacred_categories_desc": "We document various types of sacred places throughout Kyrgyzstan",
+    "mission": {
+      "title": "Our Mission",
+      "description": "To create a comprehensive digital archive of Kyrgyzstan's sacred places, rituals, and oral traditions, ensuring their preservation and accessibility for future generations."
+    },
+    "vision": {
+      "title": "Our Vision",
+      "description": "A world where the sacred heritage of the Kyrgyz people is valued, understood, and protected through community engagement and modern technology."
+    },
+    "stats": {
+      "heritage_sites": "Heritage Sites",
+      "sacred_places": "Sacred Places",
+      "oral_histories": "Oral Histories",
+      "community_members": "Community Members"
+    },
+    "team": {
+      "title": "Our Team",
+      "subtitle": "Enthusiasts working to preserve heritage",
+      "roles": {
+        "founder": "Founder",
+        "historian": "Historian",
+        "researcher": "Researcher",
+        "developer": "Developer"
+      }
+    },
+    "get_involved": "Get Involved",
+    "ways_to_contribute": "There are many ways to contribute to preserving Kyrgyzstan's sacred heritage:",
+    "contribute_list": {
+      "1": "Submit sacred places you know about",
+      "2": "Share oral histories and traditional knowledge",
+      "3": "Help verify and supplement information",
+      "4": "Tell friends and family about the project"
+    },
+    "contact_us": "Contact Us",
+    "phone": "Phone"
+  },
+  "sacred": {
+    "types": {
+      "mazar": "Mazars",
+      "spring": "Springs",
+      "mountain": "Mountains",
+      "tree": "Trees",
+      "cave": "Caves"
+    }
+  },
+  "footer": {
+    "working_hours": "Working Hours"
   }
 }

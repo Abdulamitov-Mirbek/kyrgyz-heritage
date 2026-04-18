@@ -1,21 +1,37 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { 
-  Menu, X, MapPin, User, LogOut, ChevronDown, 
-  Search, Heart, Bell, Settings, LayoutGrid, Globe,
-  Sparkles, Compass, Home, Info, Upload, LogIn, UserPlus
-} from 'lucide-react';
-import { useTranslation } from 'react-i18next';
-import { motion, AnimatePresence } from 'framer-motion';
-import useAuthStore from '../../store/authStore';
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import {
+  Menu,
+  X,
+  User,
+  LogOut,
+  ChevronDown,
+  Search,
+  Heart,
+  Settings,
+  LayoutGrid,
+  Globe,
+  Sparkles,
+  Compass,
+  Home,
+  Info,
+  Upload,
+  LogIn,
+  UserPlus,
+} from "lucide-react";
+import { useTranslation } from "react-i18next";
+import { motion, AnimatePresence } from "framer-motion";
+import useAuthStore from "../../store/authStore";
+// Import your Amanat logo
+import amanatLogo from "../../assets/Amanat.jpg";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [showLangMenu, setShowLangMenu] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
-  
+  const [searchQuery, setSearchQuery] = useState("");
+
   const { user, isAuthenticated, logout } = useAuthStore();
   const navigate = useNavigate();
   const location = useLocation();
@@ -23,8 +39,8 @@ const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
@@ -35,62 +51,68 @@ const Header = () => {
 
   const handleLogout = () => {
     logout();
-    navigate('/');
+    navigate("/");
     setShowUserMenu(false);
   };
 
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
     setShowLangMenu(false);
-    localStorage.setItem('language', lng);
+    localStorage.setItem("language", lng);
   };
 
   const handleSearch = (e) => {
     e.preventDefault();
     if (searchQuery.trim()) {
       navigate(`/sites?search=${encodeURIComponent(searchQuery)}`);
-      setSearchQuery('');
+      setSearchQuery("");
     }
   };
 
   const languages = [
-    { code: 'ru', name: 'Русский', flag: '🇷🇺', native: 'Русский' },
-    { code: 'kg', name: 'Кыргызча', flag: '🇰🇬', native: 'Кыргызча' },
-    { code: 'en', name: 'English', flag: '🇬🇧', native: 'English' },
+    { code: "ru", name: "Русский", flag: "🇷🇺", native: "Русский" },
+    { code: "kg", name: "Кыргызча", flag: "🇰🇬", native: "Кыргызча" },
+    { code: "en", name: "English", flag: "🇬🇧", native: "English" },
   ];
 
-  const currentLanguage = languages.find(lang => lang.code === i18n.language) || languages[0];
+  const currentLanguage =
+    languages.find((lang) => lang.code === i18n.language) || languages[0];
 
   const navItems = [
-    { path: '/', label: t('common.home'), icon: Home },
-    { path: '/map', label: t('common.map'), icon: Compass },
-    { path: '/sites', label: t('common.sites'), icon: LayoutGrid },
-    { path: '/about', label: t('common.about'), icon: Info },
+    { path: "/", label: t("common.home"), icon: Home },
+    { path: "/map", label: t("common.map"), icon: Compass },
+    { path: "/sites", label: t("common.sites"), icon: LayoutGrid },
+    { path: "/sacred", label: "Сакральные", icon: Sparkles },
+    { path: "/about", label: t("common.about"), icon: Info },
   ];
 
   const isActive = (path) => location.pathname === path;
 
   return (
     <>
-      <header 
+      <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled 
-            ? 'bg-stone-900/95 backdrop-blur-xl shadow-2xl py-2' 
-            : 'bg-gradient-to-b from-stone-900/90 to-transparent py-4'
+          scrolled
+            ? "bg-stone-900/95 backdrop-blur-xl shadow-2xl py-2"
+            : "bg-gradient-to-b from-stone-900/90 to-transparent py-4"
         }`}
       >
         <nav className="container mx-auto px-4 lg:px-6">
           <div className="flex items-center justify-between">
-            {/* Logo */}
+            {/* Logo - AMANAT - YELLOW THEME + BIGGER */}
             <Link to="/" className="flex items-center gap-3 group">
               <div className="relative">
-                <div className="absolute inset-0 bg-amber-500 rounded-full blur-xl opacity-50 group-hover:opacity-75 transition-opacity"></div>
-                <div className="relative bg-gradient-to-br from-amber-400 to-amber-600 p-2 rounded-full">
-                  <MapPin className="w-5 h-5 lg:w-6 lg:h-6 text-white" />
+                <div className="absolute inset-0 bg-yellow-500 rounded-full blur-xl opacity-50 group-hover:opacity-75 transition-opacity"></div>
+                <div className="relative">
+                  <img
+                    src={amanatLogo}
+                    alt="Amanat"
+                    className="w-12 h-12 lg:w-14 lg:h-14 object-contain rounded-full"
+                  />
                 </div>
               </div>
-              <span className="text-xl lg:text-2xl font-bold bg-gradient-to-r from-white to-stone-300 bg-clip-text text-transparent">
-                Kyrgyz Heritage
+              <span className="text-2xl lg:text-3xl font-bold bg-gradient-to-r from-yellow-400 to-amber-300 bg-clip-text text-transparent">
+                Amanat
               </span>
             </Link>
 
@@ -102,8 +124,8 @@ const Header = () => {
                   to={item.path}
                   className={`relative flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300 group ${
                     isActive(item.path)
-                      ? 'text-amber-400 bg-white/10'
-                      : 'text-stone-300 hover:text-white hover:bg-white/5'
+                      ? "text-yellow-400 bg-white/10"
+                      : "text-stone-300 hover:text-white hover:bg-white/5"
                   }`}
                 >
                   <item.icon className="w-4 h-4" />
@@ -111,8 +133,12 @@ const Header = () => {
                   {isActive(item.path) && (
                     <motion.div
                       layoutId="activeNav"
-                      className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-8 h-0.5 bg-amber-400 rounded-full"
-                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                      className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-8 h-0.5 bg-yellow-400 rounded-full"
+                      transition={{
+                        type: "spring",
+                        stiffness: 380,
+                        damping: 30,
+                      }}
                     />
                   )}
                 </Link>
@@ -122,24 +148,27 @@ const Header = () => {
             {/* Right Actions */}
             <div className="flex items-center gap-2 lg:gap-3">
               {/* Search Bar - Desktop */}
-              <form onSubmit={handleSearch} className="hidden lg:block relative">
+              <form
+                onSubmit={handleSearch}
+                className="hidden lg:block relative"
+              >
                 <input
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder={t('common.search')}
-                  className="w-64 px-4 py-2 pl-10 bg-white/5 border border-white/10 rounded-full text-white placeholder-stone-400 focus:outline-none focus:border-amber-500/50 focus:bg-white/10 transition-all"
+                  placeholder={t("common.search")}
+                  className="w-64 px-4 py-2 pl-10 bg-white/5 border border-white/10 rounded-full text-white placeholder-stone-400 focus:outline-none focus:border-yellow-500/50 focus:bg-white/10 transition-all"
                 />
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-stone-400" />
               </form>
 
-              {/* Submit Button */}
+              {/* Submit Button - YELLOW */}
               <Link
                 to="/submit"
-                className="hidden md:flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-full hover:shadow-lg hover:shadow-amber-500/30 transition-all duration-300 font-medium"
+                className="hidden md:flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-yellow-500 to-amber-600 text-white rounded-full hover:shadow-lg hover:shadow-yellow-500/30 transition-all duration-300 font-medium"
               >
                 <Upload className="w-4 h-4" />
-                <span>{t('common.submit')}</span>
+                <span>{t("common.submit")}</span>
               </Link>
 
               {/* Language Switcher */}
@@ -155,7 +184,9 @@ const Header = () => {
                   <span className="hidden sm:inline text-sm font-medium">
                     {currentLanguage.code.toUpperCase()}
                   </span>
-                  <ChevronDown className={`w-3 h-3 transition-transform duration-300 ${showLangMenu ? 'rotate-180' : ''}`} />
+                  <ChevronDown
+                    className={`w-3 h-3 transition-transform duration-300 ${showLangMenu ? "rotate-180" : ""}`}
+                  />
                 </button>
 
                 <AnimatePresence>
@@ -172,12 +203,14 @@ const Header = () => {
                           onClick={() => changeLanguage(lang.code)}
                           className={`w-full flex items-center gap-3 px-4 py-3 transition-all duration-300 ${
                             i18n.language === lang.code
-                              ? 'bg-amber-600 text-white'
-                              : 'text-stone-300 hover:bg-white/10'
+                              ? "bg-yellow-600 text-white"
+                              : "text-stone-300 hover:bg-white/10"
                           }`}
                         >
                           <span className="text-xl">{lang.flag}</span>
-                          <span className="flex-1 text-left">{lang.native}</span>
+                          <span className="flex-1 text-left">
+                            {lang.native}
+                          </span>
                           {i18n.language === lang.code && (
                             <motion.span
                               initial={{ scale: 0 }}
@@ -204,15 +237,23 @@ const Header = () => {
                     }}
                     className="flex items-center gap-2 p-1.5 text-stone-300 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300"
                   >
-                    <div className="w-8 h-8 bg-gradient-to-br from-amber-400 to-amber-600 rounded-full flex items-center justify-center">
+                    <div className="w-8 h-8 bg-gradient-to-br from-yellow-400 to-amber-600 rounded-full flex items-center justify-center">
                       {user?.avatar ? (
-                        <img src={user.avatar} alt={user.username} className="w-full h-full rounded-full object-cover" />
+                        <img
+                          src={user.avatar}
+                          alt={user.username}
+                          className="w-full h-full rounded-full object-cover"
+                        />
                       ) : (
                         <User className="w-4 h-4 text-white" />
                       )}
                     </div>
-                    <span className="hidden lg:inline font-medium">{user?.username}</span>
-                    <ChevronDown className={`hidden lg:block w-3 h-3 transition-transform duration-300 ${showUserMenu ? 'rotate-180' : ''}`} />
+                    <span className="hidden lg:inline font-medium">
+                      {user?.username}
+                    </span>
+                    <ChevronDown
+                      className={`hidden lg:block w-3 h-3 transition-transform duration-300 ${showUserMenu ? "rotate-180" : ""}`}
+                    />
                   </button>
 
                   <AnimatePresence>
@@ -224,10 +265,14 @@ const Header = () => {
                         className="absolute right-0 mt-2 w-56 bg-stone-800/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-white/10 overflow-hidden"
                       >
                         <div className="px-4 py-3 border-b border-white/10">
-                          <p className="text-white font-medium">{user?.username}</p>
-                          <p className="text-sm text-stone-400">{user?.email}</p>
+                          <p className="text-white font-medium">
+                            {user?.username}
+                          </p>
+                          <p className="text-sm text-stone-400">
+                            {user?.email}
+                          </p>
                         </div>
-                        
+
                         <div className="py-2">
                           <Link
                             to="/profile"
@@ -235,20 +280,20 @@ const Header = () => {
                             onClick={() => setShowUserMenu(false)}
                           >
                             <User className="w-4 h-4" />
-                            <span>{t('common.profile')}</span>
+                            <span>{t("common.profile")}</span>
                           </Link>
-                          
-                          {user?.role === 'admin' && (
+
+                          {user?.role === "admin" && (
                             <Link
                               to="/admin"
                               className="flex items-center gap-3 px-4 py-2 text-stone-300 hover:text-white hover:bg-white/10 transition-all"
                               onClick={() => setShowUserMenu(false)}
                             >
                               <Settings className="w-4 h-4" />
-                              <span>{t('common.admin')}</span>
+                              <span>{t("common.admin")}</span>
                             </Link>
                           )}
-                          
+
                           <Link
                             to="/favorites"
                             className="flex items-center gap-3 px-4 py-2 text-stone-300 hover:text-white hover:bg-white/10 transition-all"
@@ -265,7 +310,7 @@ const Header = () => {
                             className="w-full flex items-center gap-3 px-4 py-2 text-red-400 hover:text-red-300 hover:bg-white/10 transition-all"
                           >
                             <LogOut className="w-4 h-4" />
-                            <span>{t('common.logout')}</span>
+                            <span>{t("common.logout")}</span>
                           </button>
                         </div>
                       </motion.div>
@@ -279,14 +324,14 @@ const Header = () => {
                     className="flex items-center gap-2 px-4 py-2 text-stone-300 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300"
                   >
                     <LogIn className="w-4 h-4" />
-                    <span>{t('common.login')}</span>
+                    <span>{t("common.login")}</span>
                   </Link>
                   <Link
                     to="/register"
-                    className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-full hover:shadow-lg hover:shadow-amber-500/30 transition-all duration-300"
+                    className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-yellow-500 to-amber-600 text-white rounded-full hover:shadow-lg hover:shadow-yellow-500/30 transition-all duration-300"
                   >
                     <UserPlus className="w-4 h-4" />
-                    <span>{t('common.register')}</span>
+                    <span>{t("common.register")}</span>
                   </Link>
                 </div>
               )}
@@ -300,7 +345,11 @@ const Header = () => {
                 }}
                 className="lg:hidden p-2 text-stone-300 hover:text-white hover:bg-white/10 rounded-full transition-all duration-300"
               >
-                {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                {isOpen ? (
+                  <X className="w-6 h-6" />
+                ) : (
+                  <Menu className="w-6 h-6" />
+                )}
               </button>
             </div>
           </div>
@@ -311,7 +360,7 @@ const Header = () => {
           {isOpen && (
             <motion.div
               initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
+              animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               className="lg:hidden bg-stone-900/95 backdrop-blur-xl border-t border-white/10"
             >
@@ -322,8 +371,8 @@ const Header = () => {
                     type="text"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder={t('common.search')}
-                    className="w-full px-4 py-3 pl-12 bg-white/5 border border-white/10 rounded-xl text-white placeholder-stone-400 focus:outline-none focus:border-amber-500/50"
+                    placeholder={t("common.search")}
+                    className="w-full px-4 py-3 pl-12 bg-white/5 border border-white/10 rounded-xl text-white placeholder-stone-400 focus:outline-none focus:border-yellow-500/50"
                   />
                   <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-stone-400" />
                 </form>
@@ -336,8 +385,8 @@ const Header = () => {
                       to={item.path}
                       className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 ${
                         isActive(item.path)
-                          ? 'bg-amber-600 text-white'
-                          : 'text-stone-300 hover:bg-white/10'
+                          ? "bg-yellow-600 text-white"
+                          : "text-stone-300 hover:bg-white/10"
                       }`}
                       onClick={() => setIsOpen(false)}
                     >
@@ -345,14 +394,14 @@ const Header = () => {
                       <span className="font-medium">{item.label}</span>
                     </Link>
                   ))}
-                  
+
                   <Link
                     to="/submit"
-                    className="flex items-center gap-3 px-4 py-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 text-white font-medium"
+                    className="flex items-center gap-3 px-4 py-3 rounded-xl bg-gradient-to-r from-yellow-500 to-amber-600 text-white font-medium"
                     onClick={() => setIsOpen(false)}
                   >
                     <Upload className="w-5 h-5" />
-                    <span>{t('common.submit')}</span>
+                    <span>{t("common.submit")}</span>
                   </Link>
                 </div>
 
@@ -365,15 +414,15 @@ const Header = () => {
                       onClick={() => setIsOpen(false)}
                     >
                       <LogIn className="w-5 h-5" />
-                      <span>{t('common.login')}</span>
+                      <span>{t("common.login")}</span>
                     </Link>
                     <Link
                       to="/register"
-                      className="flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-xl"
+                      className="flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-yellow-500 to-amber-600 text-white rounded-xl"
                       onClick={() => setIsOpen(false)}
                     >
                       <UserPlus className="w-5 h-5" />
-                      <span>{t('common.register')}</span>
+                      <span>{t("common.register")}</span>
                     </Link>
                   </div>
                 )}
@@ -382,7 +431,7 @@ const Header = () => {
           )}
         </AnimatePresence>
       </header>
-      
+
       {/* Spacer for fixed header */}
       <div className="h-16 lg:h-20" />
     </>

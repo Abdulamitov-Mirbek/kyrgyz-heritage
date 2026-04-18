@@ -3,12 +3,19 @@ const Image = require("../models/Image");
 const Ritual = require("../models/Ritual");
 const OralHistory = require("../models/OralHistory");
 
+// ============================================
+// BASIC CRUD OPERATIONS
+// ============================================
+
+// Create site
 // Create site
 const createSite = async (req, res) => {
   try {
     const site = await Site.create({
       ...req.body,
       createdBy: req.user.id,
+      isVerified: true, // Auto-verify for hackathon
+      verificationStatus: "approved",
     });
 
     res.status(201).json({
@@ -273,13 +280,20 @@ const getSiteStats = async (req, res) => {
   try {
     const site = await Site.findById(req.params.id);
 
+    if (!site) {
+      return res.status(404).json({
+        success: false,
+        error: "Site not found",
+      });
+    }
+
     res.json({
       success: true,
       data: {
-        viewCount: site.viewCount,
-        imageCount: site.images.length,
-        ritualCount: site.rituals.length,
-        oralHistoryCount: site.oralHistories.length,
+        viewCount: site.viewCount || 0,
+        imageCount: site.images?.length || 0,
+        ritualCount: site.rituals?.length || 0,
+        oralHistoryCount: site.oralHistories?.length || 0,
       },
     });
   } catch (error) {
@@ -290,7 +304,163 @@ const getSiteStats = async (req, res) => {
   }
 };
 
+// ============================================
+// SACRED PLACES METHODS
+// ============================================
+
+// Get all sacred places
+const getSacredPlaces = async (req, res) => {
+  try {
+    const { lng, lat, distance = 100 } = req.query;
+
+    let query = {
+      $or: [
+        { siteType: "sacred" },
+        { sacredType: { $exists: true } },
+        { spiritualSignificance: { $exists: true } },
+      ],
+      isVerified: true,
+    };
+
+    if (lng && lat) {
+      query.location = {
+        $near: {
+          $geometry: {
+            type: "Point",
+            coordinates: [parseFloat(lng), parseFloat(lat)],
+          },
+          $maxDistance: distance * 1000,
+        },
+      };
+    }
+
+    const sacredPlaces = await Site.find(query)
+      .populate("images", "url thumbnailUrl")
+      .select(
+        "name description location sacredType spiritualSignificance legends healingProperties images viewCount siteType",
+      )
+      .limit(50);
+
+    res.json({
+      success: true,
+      count: sacredPlaces.length,
+      data: sacredPlaces,
+    });
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      error: error.message,
+    });
+  }
+};
+
+// Get single sacred place
+const getSacredPlace = async (req, res) => {
+  try {
+    const site = await Site.findOne({
+      _id: req.params.id,
+      $or: [{ siteType: "sacred" }, { sacredType: { $exists: true } }],
+      isVerified: true,
+    })
+      .populate("images")
+      .populate("rituals")
+      .populate("oralHistories")
+      .populate("createdBy", "username");
+
+    if (!site) {
+      return res.status(404).json({
+        success: false,
+        error: "Sacred place not found",
+      });
+    }
+
+    site.viewCount += 1;
+    await site.save();
+
+    res.json({
+      success: true,
+      data: site,
+    });
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      error: error.message,
+    });
+  }
+};
+
+// Get sacred places by type
+const getSacredPlacesByType = async (req, res) => {
+  try {
+    const { type } = req.params;
+
+    const sacredPlaces = await Site.find({
+      sacredType: type,
+      isVerified: true,
+    })
+      .populate("images", "url")
+      .select(
+        "name description location sacredType spiritualSignificance images viewCount",
+      )
+      .limit(30);
+
+    res.json({
+      success: true,
+      count: sacredPlaces.length,
+      data: sacredPlaces,
+    });
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      error: error.message,
+    });
+  }
+};
+
+// Get sacred places statistics
+const getSacredStats = async (req, res) => {
+  try {
+    const stats = await Site.aggregate([
+      {
+        $match: {
+          $or: [{ siteType: "sacred" }, { sacredType: { $exists: true } }],
+          isVerified: true,
+        },
+      },
+      {
+        $group: {
+          _id: "$sacredType",
+          count: { $sum: 1 },
+        },
+      },
+    ]);
+
+    const total = await Site.countDocuments({
+      $or: [{ siteType: "sacred" }, { sacredType: { $exists: true } }],
+      isVerified: true,
+    });
+
+    res.json({
+      success: true,
+      data: {
+        total,
+        byType: stats,
+      },
+    });
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      error: error.message,
+    });
+  }
+};
+
+// ============================================
+// EXPORT ALL FUNCTIONS
+// ============================================
+
 module.exports = {
+  // Basic CRUD
   createSite,
   getSites,
   getSite,
@@ -302,4 +472,10 @@ module.exports = {
   addRitual,
   addOralHistory,
   getSiteStats,
+
+  // Sacred places
+  getSacredPlaces,
+  getSacredPlace,
+  getSacredPlacesByType,
+  getSacredStats,
 };

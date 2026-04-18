@@ -10,6 +10,8 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
+// Import your Amanat background image
+import amanatBg from "../assets/Amanat.jpg";
 
 const HomePage = () => {
   const [scrolled, setScrolled] = React.useState(false);
@@ -26,115 +28,116 @@ const HomePage = () => {
       icon: MapPin,
       title: t("home.features.map.title"),
       description: t("home.features.map.description"),
-      color: "from-blue-500 to-cyan-500",
+      color: "from-yellow-500 to-amber-500",
       link: "/map",
     },
     {
       icon: BookOpen,
       title: t("home.features.histories.title"),
       description: t("home.features.histories.description"),
-      color: "from-purple-500 to-pink-500",
+      color: "from-yellow-500 to-amber-500",
       link: "/sites",
     },
     {
       icon: Users,
       title: t("home.features.community.title"),
       description: t("home.features.community.description"),
-      color: "from-green-500 to-emerald-500",
+      color: "from-yellow-500 to-amber-500",
       link: "/about",
     },
     {
       icon: Upload,
       title: t("home.features.contribute.title"),
       description: t("home.features.contribute.description"),
-      color: "from-orange-500 to-red-500",
+      color: "from-yellow-500 to-amber-500",
       link: "/submit",
     },
   ];
 
   const featuredSites = [
     {
-      name: "Бурана мунарасы / Burana Tower",
-      nameRu: "Башня Бурана",
-      nameKg: "Бурана мунарасы",
+      name: "Р‘СѓСЂР°РЅР° РјСѓРЅР°СЂР°СЃС‹ / Burana Tower",
+      nameRu: "Р‘Р°С€РЅСЏ Р‘СѓСЂР°РЅР°",
+      nameKg: "Р‘СѓСЂР°РЅР° РјСѓРЅР°СЂР°СЃС‹",
       nameEn: "Burana Tower",
       location: t("home.featured.locations.chuy", {
-        defaultValue: "Ч?й облусу / Chuy Region",
+        defaultValue: "Р§ТЇР№ РѕР±Р»СѓСЃСѓ / Chuy Region",
       }),
-      locationRu: "Чуйская область",
-      locationKg: "Ч?й облусу",
+      locationRu: "Р§СѓР№СЃРєР°СЏ РѕР±Р»Р°СЃС‚СЊ",
+      locationKg: "Р§ТЇР№ РѕР±Р»СѓСЃСѓ",
       locationEn: "Chuy Region",
       image:
         "https://images.pexels.com/photos/16498845/pexels-photo-16498845.jpeg",
       period: t("home.featured.periods.9th", {
-        defaultValue: "IX-XI кылым / 9th-11th Century",
+        defaultValue: "IX-XI РєС‹Р»С‹Рј / 9th-11th Century",
       }),
-      periodRu: "IX-XI века",
-      periodKg: "IX-XI кылым",
+      periodRu: "IX-XI РІРµРєР°",
+      periodKg: "IX-XI РєС‹Р»С‹Рј",
       periodEn: "9th-11th Century",
     },
     {
-      name: "Таш-Рабат / Tash Rabat",
-      nameRu: "Таш-Рабат",
-      nameKg: "Таш-Рабат",
+      name: "РўР°С€-Р Р°Р±Р°С‚ / Tash Rabat",
+      nameRu: "РўР°С€-Р Р°Р±Р°С‚",
+      nameKg: "РўР°С€-Р Р°Р±Р°С‚",
       nameEn: "Tash Rabat",
       location: t("home.featured.locations.naryn", {
-        defaultValue: "Нарын облусу / Naryn Region",
+        defaultValue: "РќР°СЂС‹РЅ РѕР±Р»СѓСЃСѓ / Naryn Region",
       }),
-      locationRu: "Нарынская область",
-      locationKg: "Нарын облусу",
+      locationRu: "РќР°СЂС‹РЅСЃРєР°СЏ РѕР±Р»Р°СЃС‚СЊ",
+      locationKg: "РќР°СЂС‹РЅ РѕР±Р»СѓСЃСѓ",
       locationEn: "Naryn Region",
       image:
         "https://images.pexels.com/photos/29365324/pexels-photo-29365324.jpeg",
       period: t("home.featured.periods.15th", {
-        defaultValue: "XV кылым / 15th Century",
+        defaultValue: "XV РєС‹Р»С‹Рј / 15th Century",
       }),
-      periodRu: "XV век",
-      periodKg: "XV кылым",
+      periodRu: "XV РІРµРє",
+      periodKg: "XV РєС‹Р»С‹Рј",
       periodEn: "15th Century",
     },
     {
-      name: "Саймалуу-Таш / Saimaluu Tash",
-      nameRu: "Саймалуу-Таш",
-      nameKg: "Саймалуу-Таш",
+      name: "РЎР°Р№РјР°Р»СѓСѓ-РўР°С€ / Saimaluu Tash",
+      nameRu: "РЎР°Р№РјР°Р»СѓСѓ-РўР°С€",
+      nameKg: "РЎР°Р№РјР°Р»СѓСѓ-РўР°С€",
       nameEn: "Saimaluu Tash",
       location: t("home.featured.locations.jalalabad", {
-        defaultValue: "Жалал-Абад облусу / Jalal-Abad Region",
+        defaultValue: "Р–Р°Р»Р°Р»-РђР±Р°Рґ РѕР±Р»СѓСЃСѓ / Jalal-Abad Region",
       }),
-      locationRu: "Джалал-Абадская область",
-      locationKg: "Жалал-Абад облусу",
+      locationRu: "Р”Р¶Р°Р»Р°Р»-РђР±Р°РґСЃРєР°СЏ РѕР±Р»Р°СЃС‚СЊ",
+      locationKg: "Р–Р°Р»Р°Р»-РђР±Р°Рґ РѕР±Р»СѓСЃСѓ",
       locationEn: "Jalal-Abad Region",
       image:
         "https://images.pexels.com/photos/28354402/pexels-photo-28354402.jpeg",
       period: t("home.featured.periods.bronze", {
-        defaultValue: "Коло доору / Bronze Age",
+        defaultValue: "РљРѕР»Рѕ РґРѕРѕСЂСѓ / Bronze Age",
       }),
-      periodRu: "Бронзовый век",
-      periodKg: "Коло доору",
+      periodRu: "Р‘СЂРѕРЅР·РѕРІС‹Р№ РІРµРє",
+      periodKg: "РљРѕР»Рѕ РґРѕРѕСЂСѓ",
       periodEn: "Bronze Age",
     },
   ];
 
   return (
     <div className="overflow-hidden">
-      {/* Hero Section with Parallax */}
+      {/* Hero Section with Amanat Background */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Background Image with Overlay */}
+        {/* Background Image - AMANAT.JPG */}
         <div className="absolute inset-0 z-0">
           <img
-            src="https://images.pexels.com/photos/18942624/pexels-photo-18942624.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            alt="Kyrgyz Mountains"
+            src={amanatBg}
+            alt="Amanat - РЎР°РєСЂР°Р»СЊРЅРѕРµ РЅР°СЃР»РµРґРёРµ РљС‹СЂРіС‹Р·СЃС‚Р°РЅР°"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-amber-900/80 via-stone-900/70 to-stone-900/80"></div>
+          {/* Yellow/Gold overlay to match Amanat branding */}
+          <div className="absolute inset-0 bg-gradient-to-br from-yellow-900/70 via-amber-800/60 to-stone-900/80"></div>
         </div>
 
-        {/* Animated Particles */}
+        {/* Animated Particles - Yellow/Gold */}
         <div className="absolute inset-0 z-0 opacity-30">
           {[...Array(20)].map((_, i) => (
             <div
               key={i}
-              className="absolute w-1 h-1 bg-amber-400 rounded-full animate-pulse"
+              className="absolute w-1 h-1 bg-yellow-400 rounded-full animate-pulse"
               style={{
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
@@ -147,35 +150,39 @@ const HomePage = () => {
         {/* Content */}
         <div className="relative z-10 container mx-auto px-4 py-20 text-center">
           <div className="max-w-4xl mx-auto">
-            <div className="inline-flex items-center gap-2 bg-amber-500/20 backdrop-blur-sm px-4 py-2 rounded-full mb-6 border border-amber-400/30">
-              <Sparkles className="w-4 h-4 text-amber-400" />
-              <span className="text-amber-200 text-sm">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 bg-yellow-500/20 backdrop-blur-sm px-4 py-2 rounded-full mb-6 border border-yellow-400/30">
+              <Sparkles className="w-4 h-4 text-yellow-400" />
+              <span className="text-yellow-200 text-sm">
                 {t("home.hero.badge")}
               </span>
             </div>
 
+            {/* Title */}
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
               {t("home.hero.title")}{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-yellow-300">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-300">
                 {t("home.hero.title_highlight")}
               </span>
             </h1>
 
+            {/* Subtitle */}
             <p className="text-xl md:text-2xl text-stone-200 mb-10 max-w-2xl mx-auto">
               {t("home.hero.subtitle")}
             </p>
 
+            {/* Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 to="/map"
-                className="group bg-gradient-to-r from-amber-500 to-amber-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-2xl hover:shadow-amber-500/30 transition-all duration-300 flex items-center justify-center gap-2"
+                className="group bg-gradient-to-r from-yellow-500 to-amber-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-2xl hover:shadow-yellow-500/30 transition-all duration-300 flex items-center justify-center gap-2"
               >
                 {t("home.hero.explore_map")}
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
                 to="/submit"
-                className="group bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white/20 transition-all duration-300"
+                className="group bg-white/10 backdrop-blur-sm border-2 border-yellow-400/50 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white/20 transition-all duration-300"
               >
                 {t("home.hero.contribute")}
               </Link>
@@ -184,7 +191,7 @@ const HomePage = () => {
             {/* Stats */}
             <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto mt-20">
               <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-amber-400">
+                <div className="text-3xl md:text-4xl font-bold text-yellow-400">
                   150+
                 </div>
                 <div className="text-stone-300 text-sm">
@@ -192,7 +199,7 @@ const HomePage = () => {
                 </div>
               </div>
               <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-amber-400">
+                <div className="text-3xl md:text-4xl font-bold text-yellow-400">
                   45+
                 </div>
                 <div className="text-stone-300 text-sm">
@@ -200,7 +207,7 @@ const HomePage = () => {
                 </div>
               </div>
               <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-amber-400">
+                <div className="text-3xl md:text-4xl font-bold text-yellow-400">
                   30+
                 </div>
                 <div className="text-stone-300 text-sm">
@@ -213,8 +220,8 @@ const HomePage = () => {
 
         {/* Scroll Indicator */}
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
-            <div className="w-1 h-3 bg-white/50 rounded-full mt-2 animate-pulse"></div>
+          <div className="w-6 h-10 border-2 border-yellow-400/50 rounded-full flex justify-center">
+            <div className="w-1 h-3 bg-yellow-400/50 rounded-full mt-2 animate-pulse"></div>
           </div>
         </div>
       </section>
@@ -252,7 +259,7 @@ const HomePage = () => {
                 <p className="text-stone-600 leading-relaxed">
                   {feature.description}
                 </p>
-                <div className="mt-4 flex items-center text-amber-700 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className="mt-4 flex items-center text-yellow-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   {t("common.learnMore")}{" "}
                   <ChevronRight className="w-4 h-4 ml-1" />
                 </div>
@@ -274,7 +281,7 @@ const HomePage = () => {
             </div>
             <Link
               to="/sites"
-              className="text-amber-400 hover:text-amber-300 flex items-center gap-2"
+              className="text-yellow-400 hover:text-yellow-300 flex items-center gap-2"
             >
               {t("common.viewAll")} <ArrowRight className="w-4 h-4" />
             </Link>
@@ -294,7 +301,7 @@ const HomePage = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                 <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                  <div className="text-amber-400 text-sm mb-1">
+                  <div className="text-yellow-400 text-sm mb-1">
                     {site.period}
                   </div>
                   <h3 className="text-2xl font-bold mb-2">{site.name}</h3>
@@ -310,18 +317,18 @@ const HomePage = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-gradient-to-r from-amber-600 to-amber-700">
+      <section className="py-24 bg-gradient-to-r from-yellow-600 to-amber-700">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
             {t("home.cta.title")}
           </h2>
-          <p className="text-xl text-amber-100 mb-10 max-w-2xl mx-auto">
+          <p className="text-xl text-yellow-100 mb-10 max-w-2xl mx-auto">
             {t("home.cta.subtitle")}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/register"
-              className="bg-white text-amber-700 px-8 py-4 rounded-full font-semibold text-lg hover:shadow-xl transition-all duration-300"
+              className="bg-white text-yellow-700 px-8 py-4 rounded-full font-semibold text-lg hover:shadow-xl transition-all duration-300"
             >
               {t("home.cta.get_started")}
             </Link>
