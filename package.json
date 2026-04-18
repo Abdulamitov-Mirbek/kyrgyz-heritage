@@ -1,0 +1,47 @@
+{
+  "devDependencies": {
+    "@types/leaflet": "^1.9.21",
+    "autoprefixer": "^10.5.0",
+    "nodemon": "^3.1.14",
+    "postcss": "^8.5.10",
+    "tailwindcss": "^4.2.2"
+  },
+  "name": "kyrgyz-heritage",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "baseline-browser-mapping": "^2.10.19",
+    "bcryptjs": "^3.0.3",
+    "browserslist": "^4.28.2",
+    "caniuse-lite": "^1.0.30001788",
+    "cloudinary": "^2.9.0",
+    "compression": "^1.8.1",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "electron-to-chromium": "^1.5.340",
+    "escalade": "^3.2.0",
+    "express": "^5.2.1",
+    "fraction.js": "^5.3.4",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.3",
+    "knex": "^3.2.9",
+    "morgan": "^1.10.1",
+    "multer": "^2.1.1",
+    "nanoid": "^3.3.11",
+    "node-releases": "^2.0.37",
+    "objection": "^3.1.5",
+    "pg": "^8.20.0",
+    "picocolors": "^1.1.1",
+    "postcss-value-parser": "^4.2.0",
+    "source-map-js": "^1.2.1",
+    "update-browserslist-db": "^1.2.3"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}
