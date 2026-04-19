@@ -33,19 +33,53 @@ const AboutPage = () => {
     { value: "500+", label: "community_members", icon: Users },
   ];
 
-  const team = [
-    { name: "Айжан Мамбетова", role: "founder", icon: Star },
-    { name: "Бакыт Асанов", role: "historian", icon: BookOpen },
-    { name: "Гульнара Садыкова", role: "researcher", icon: Award },
-    { name: "Темирлан Усубалиев", role: "developer", icon: Sparkles },
-  ];
-
+  // ✅ MISSING ARRAY - ADD THIS BACK
   const sacredTypes = [
     { icon: "🕌", name: "mazar", count: 24 },
     { icon: "💧", name: "spring", count: 18 },
     { icon: "⛰️", name: "mountain", count: 32 },
     { icon: "🌳", name: "tree", count: 15 },
     { icon: "🌙", name: "cave", count: 12 },
+  ];
+
+  // ✅ UPDATED TEAM ARRAY WITH NEW NAMES
+  const team = [
+    {
+      name: "Ешходжаев Алладин",
+      role: "founder",
+      roleDisplay: "Основатель",
+      icon: Star,
+      color: "from-yellow-400 to-amber-600",
+      textColor: "text-yellow-700",
+      bio: "Идейный вдохновитель и руководитель проекта",
+    },
+    {
+      name: "Суранбаев Курманбек",
+      role: "historian",
+      roleDisplay: "Историк",
+      icon: BookOpen,
+      color: "from-emerald-400 to-teal-600",
+      textColor: "text-emerald-700",
+      bio: "Эксперт по культурному наследию Кыргызстана",
+    },
+    {
+      name: "Абдужалилов Исламбек",
+      role: "researcher",
+      roleDisplay: "Исследователь",
+      icon: Award,
+      color: "from-blue-400 to-indigo-600",
+      textColor: "text-blue-700",
+      bio: "Полевой исследователь сакральных мест",
+    },
+    {
+      name: "Абдуламитов Мирбек",
+      role: "developer",
+      roleDisplay: "Разработчик",
+      icon: Sparkles,
+      color: "from-purple-400 to-violet-600",
+      textColor: "text-purple-700",
+      bio: "Full-stack разработчик цифровой платформы",
+    },
   ];
 
   return (
@@ -238,7 +272,7 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* Team */}
+      {/* Team - UPDATED VERSION */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-4">
@@ -251,18 +285,40 @@ const AboutPage = () => {
             )}
           </p>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-5xl mx-auto">
             {team.map((member, i) => (
-              <div key={i} className="text-center">
-                <div className="w-24 h-24 bg-gradient-to-br from-yellow-400 to-amber-600 rounded-full mx-auto mb-4 flex items-center justify-center">
-                  <member.icon className="w-10 h-10 text-white" />
+              <div key={i} className="group text-center">
+                <div className="relative w-32 h-32 mx-auto mb-4">
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-br ${member.color} rounded-full opacity-80 group-hover:opacity-100 transition`}
+                  ></div>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <member.icon className="w-12 h-12 text-white" />
+                  </div>
                 </div>
-                <h4 className="font-bold">{member.name}</h4>
-                <p className="text-sm text-stone-500">
-                  {t(`about.team.roles.${member.role}`, member.role)}
+                <h4 className="font-bold text-lg">{member.name}</h4>
+                <p className={`${member.textColor} font-medium text-sm mb-2`}>
+                  {member.roleDisplay}
                 </p>
+                <p className="text-stone-500 text-sm">{member.bio}</p>
               </div>
             ))}
+          </div>
+
+          {/* Team Quote */}
+          <div className="mt-12 text-center max-w-2xl mx-auto">
+            <div className="bg-amber-50 rounded-xl p-6 border border-amber-200">
+              <Sparkles className="w-6 h-6 text-amber-500 mx-auto mb-3" />
+              <p className="text-stone-700 italic">
+                {t(
+                  "about.team.quote",
+                  '"Мы верим, что сохранение сакрального наследия — это не просто работа, а миссия, доверенная нам предками."',
+                )}
+              </p>
+              <p className="text-amber-700 font-medium mt-3">
+                — {t("about.team.quote_author", "Команда Amanat")}
+              </p>
+            </div>
           </div>
         </div>
       </section>

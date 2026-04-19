@@ -11,8 +11,9 @@ import SiteList from "./commponents/Sites/SiteList.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
 import RegisterPage from "./pages/RegisterPage.jsx";
 import AdminPage from "./pages/AdminPage.jsx";
-import SacredSubmitPage from "./pages/SacredSubmitPage.jsx";
-import AIAssistant from './commponents/AI/AIAssistant.jsx';
+import SacredSitesPage from "./pages/SacredSitesPage";
+import SacredSubmitPage from "./pages/SacredSubmitPage";
+import AIAssistant from "./commponents/AI/AIAssistant.jsx";
 
 function App() {
   return (
@@ -24,17 +25,17 @@ function App() {
           <Route path="/map" element={<MapPage />} />
           <Route path="/sites" element={<SiteList />} />
           <Route path="/sites/:id" element={<SitePage />} />
+          <Route path="/sacred" element={<SacredSitesPage />} />
+          <Route path="/sacred/submit" element={<SacredSubmitPage />} />
           <Route path="/submit" element={<SubmitPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/admin" element={<AdminPage />} />
-          <Route path="/sacred/submit" element={<SacredSubmitPage />} />
         </Routes>
       </main>
       <Footer />
       <AIAssistant />
-
     </div>
   );
 }
