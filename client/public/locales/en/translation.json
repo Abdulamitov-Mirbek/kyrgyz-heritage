@@ -1,0 +1,275 @@
+{
+  "common": {
+    "home": "Home",
+    "map": "Map",
+    "sites": "Sites",
+    "about": "About",
+    "submit": "Submit",
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout",
+    "profile": "Profile",
+    "admin": "Admin",
+    "search": "Search",
+    "filter": "Filter",
+    "viewAll": "View All",
+    "learnMore": "Learn More",
+    "loading": "Loading...",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "close": "Close",
+    "back": "Back",
+    "next": "Next",
+    "submit_text": "Submit"
+  },
+  "home": {
+    "hero": {
+      "badge": "Preserving Heritage for Future Generations",
+      "title": "Discover the Soul of",
+      "title_highlight": "Kyrgyzstan",
+      "subtitle": "Explore ancient petroglyphs, sacred sites, and living traditions that tell the story of the Kyrgyz people.",
+      "explore_map": "Explore Interactive Map",
+      "contribute": "Contribute Your Knowledge"
+    },
+    "stats": {
+      "sites": "Heritage Sites",
+      "histories": "Oral Histories",
+      "rituals": "Rituals Documented"
+    },
+    "features": {
+      "title": "Preserve. Discover. Share.",
+      "subtitle": "Join our community in documenting and celebrating Kyrgyzstan's rich cultural tapestry",
+      "map": {
+        "title": "Interactive Map",
+        "description": "Explore heritage sites across Kyrgyzstan with our detailed map"
+      },
+      "histories": {
+        "title": "Oral Histories",
+        "description": "Listen to stories and legends passed down through generations"
+      },
+      "community": {
+        "title": "Community Driven",
+        "description": "Built by people who care about preserving cultural heritage"
+      },
+      "contribute": {
+        "title": "Easy Contribution",
+        "description": "Share your knowledge and help document traditions"
+      }
+    },
+    "featured": {
+      "title": "Featured Heritage Sites",
+      "subtitle": "Discover some of our most treasured locations",
+      "locations": {
+        "chuy": "Chuy Region",
+        "naryn": "Naryn Region",
+        "jalalabad": "Jalal-Abad Region"
+      },
+      "periods": {
+        "9th": "9th-11th Century",
+        "15th": "15th Century",
+        "bronze": "Bronze Age"
+      }
+    },
+    "cta": {
+      "title": "Ready to Explore Kyrgyzstan's Heritage?",
+      "subtitle": "Join thousands of cultural enthusiasts in preserving and discovering the rich traditions of Kyrgyzstan.",
+      "get_started": "Get Started Now",
+      "learn_more": "Learn More"
+    }
+  },
+  "footer": {
+    "newsletter": {
+      "title": "Stay Updated",
+      "subtitle": "Subscribe to our newsletter for updates on new heritage sites and community stories",
+      "placeholder": "Enter your email",
+      "button": "Subscribe"
+    },
+    "description": "Preserving and documenting the rich cultural heritage of Kyrgyzstan through community collaboration and modern technology.",
+    "quickLinks": "Quick Links",
+    "contact": "Contact Us",
+    "address": "Bishkek, Kyrgyzstan",
+    "rights": "© 2026 Kyrgyz Heritage Platform. Made with love for cultural preservation",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "cookies": "Cookie Policy"
+  },
+  "auth": {
+    "login_title": "Login",
+    "register_title": "Create Account",
+    "username": "Username",
+    "email": "Email",
+    "password": "Password",
+    "confirm_password": "Confirm Password",
+    "forgot_password": "Forgot Password?",
+    "no_account": "Don't have an account?",
+    "has_account": "Already have an account?",
+    "register_here": "Register here",
+    "login_here": "Login here",
+    "login_button": "Login",
+    "register_button": "Register"
+  },
+  "sites": {
+    "title": "Heritage Sites",
+    "subtitle": "Discover and explore the rich cultural heritage of Kyrgyzstan",
+    "search_placeholder": "Search sites...",
+    "found": "sites found",
+    "no_sites": "No sites found",
+    "try_adjusting": "Try adjusting your search or filter",
+    "periods": {
+      "all": "All Periods",
+      "ancient": "Ancient",
+      "medieval": "Medieval",
+      "colonial": "Colonial",
+      "modern": "Modern",
+      "contemporary": "Contemporary"
+    },
+    "details": {
+      "about": "About",
+      "location": "Location",
+      "cultural_period": "Cultural Period",
+      "visiting_hours": "Visiting Hours",
+      "accessibility": "Accessibility",
+      "contact": "Contact Information",
+      "tags": "Tags",
+      "statistics": "Statistics",
+      "images": "Images",
+      "rituals": "Rituals",
+      "oral_histories": "Oral Histories",
+      "contributors": "Contributors",
+      "views": "views",
+      "phone": "Phone",
+      "email": "Email",
+      "website": "Website",
+      "map": "Map",
+      "not_specified": "Not specified"
+    }
+  },
+  "submit": {
+    "title": "Submit a Heritage Site",
+    "subtitle": "Help preserve Kyrgyzstan's cultural heritage by submitting new sites for documentation.",
+    "basic_info": "Basic Information",
+    "site_name": "Site Name *",
+    "site_name_placeholder": "e.g., Burana Tower",
+    "description": "Description *",
+    "description_placeholder": "Describe the site, its history, and significance...",
+    "cultural_period": "Cultural Period",
+    "heritage_status": "Heritage Status",
+    "tags": "Tags",
+    "tags_placeholder": "heritage, ancient, tower (comma-separated)",
+    "location": "Location",
+    "address": "Address",
+    "address_placeholder": "Street, City, Region, Country",
+    "selected_location": "Selected",
+    "images": "Images",
+    "additional_info": "Additional Information",
+    "visiting_hours_placeholder": "e.g., 9:00 AM - 6:00 PM",
+    "contact_phone": "Contact Phone",
+    "contact_email": "Contact Email",
+    "website_placeholder": "https://example.com",
+    "submitting": "Submitting...",
+    "submit_button": "Submit Site",
+    "success": "Site submitted successfully!",
+    "error": "Failed to submit site",
+    "select_location": "Please select a location on the map"
+  },
+  "map": {
+    "title": "Interactive Heritage Map",
+    "subtitle": "Explore cultural heritage sites across Kyrgyzstan. Click on markers to learn more.",
+    "filters": "Filters",
+    "apply_filters": "Apply Filters",
+    "loading_sites": "Loading sites..."
+  },
+  "about": {
+    "title": "About Kyrgyz Heritage",
+    "subtitle": "A community-driven platform dedicated to preserving and documenting the rich cultural heritage of Kyrgyzstan for future generations.",
+    "mission": {
+      "title": "Our Mission",
+      "description": "To create a comprehensive digital archive of Kyrgyzstan's cultural heritage sites, rituals, and oral traditions, ensuring they are preserved and accessible for generations to come."
+    },
+    "vision": {
+      "title": "Our Vision",
+      "description": "A world where Kyrgyz cultural heritage is celebrated, understood, and protected through community engagement and modern technology."
+    },
+    "preservation": {
+      "title": "Preservation",
+      "description": "We work with local communities, historians, and cultural experts to document and preserve traditional knowledge, rituals, and historical sites."
+    },
+    "community": {
+      "title": "Community",
+      "description": "Our platform is built by and for the community. Anyone can contribute by submitting sites, sharing stories, or helping verify information."
+    },
+    "get_involved": "Get Involved",
+    "ways_to_contribute": "There are many ways to contribute to the preservation of Kyrgyzstan's cultural heritage:",
+    "contribute_list": {
+      "1": "Submit heritage sites you know about",
+      "2": "Share oral histories and traditional knowledge",
+      "3": "Help verify and review submissions",
+      "4": "Spread the word about our platform",
+      "5": "Volunteer with local preservation efforts"
+    },
+    "contact_us": "Contact Us",
+    "contact_text": "Have questions or want to get involved? Reach out to us:"
+  },
+  "about": {
+    "title": "About Amanat",
+    "subtitle": "Preserving the sacred heritage of Kyrgyzstan for future generations",
+    "what_is_amanat": "What is \"Amanat\"?",
+    "amanat_meaning": "Amanat is something entrusted for safekeeping, a legacy we must pass on to future generations.",
+    "sacred_heritage": "Sacred Heritage",
+    "sacred_heritage_desc": "Sacred mountains, mazars, springs, and places of power",
+    "traditions": "Traditions",
+    "traditions_desc": "Rituals and customs passed down from generation to generation",
+    "oral_histories": "Oral Histories",
+    "oral_histories_desc": "Legends, stories, and tales from elders",
+    "sacred_categories": "Types of Sacred Places",
+    "sacred_categories_desc": "We document various types of sacred places throughout Kyrgyzstan",
+    "mission": {
+      "title": "Our Mission",
+      "description": "To create a comprehensive digital archive of Kyrgyzstan's sacred places, rituals, and oral traditions, ensuring their preservation and accessibility for future generations."
+    },
+    "vision": {
+      "title": "Our Vision",
+      "description": "A world where the sacred heritage of the Kyrgyz people is valued, understood, and protected through community engagement and modern technology."
+    },
+    "stats": {
+      "heritage_sites": "Heritage Sites",
+      "sacred_places": "Sacred Places",
+      "oral_histories": "Oral Histories",
+      "community_members": "Community Members"
+    },
+    "team": {
+      "title": "Our Team",
+      "subtitle": "Enthusiasts working to preserve heritage",
+      "roles": {
+        "founder": "Founder",
+        "historian": "Historian",
+        "researcher": "Researcher",
+        "developer": "Developer"
+      }
+    },
+    "get_involved": "Get Involved",
+    "ways_to_contribute": "There are many ways to contribute to preserving Kyrgyzstan's sacred heritage:",
+    "contribute_list": {
+      "1": "Submit sacred places you know about",
+      "2": "Share oral histories and traditional knowledge",
+      "3": "Help verify and supplement information",
+      "4": "Tell friends and family about the project"
+    },
+    "contact_us": "Contact Us",
+    "phone": "Phone"
+  },
+  "sacred": {
+    "types": {
+      "mazar": "Mazars",
+      "spring": "Springs",
+      "mountain": "Mountains",
+      "tree": "Trees",
+      "cave": "Caves"
+    }
+  },
+  "footer": {
+    "working_hours": "Working Hours"
+  }
+}
