@@ -30,5 +30,16 @@ services:
     depends_on:
       - mongodb
 
+  frontend:
+    build: ./client
+    container_name: kyrgyz-heritage-client
+    restart: unless-stopped
+    ports:
+      - "5173:5173"
+    environment:
+      - VITE_API_BASE_URL=http://backend:5000
+    depends_on:
+      - backend
+
 volumes:
   mongodb_data:

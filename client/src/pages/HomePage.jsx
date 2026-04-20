@@ -67,7 +67,7 @@ const HomePage = () => {
       locationKg: "Чүй облусу",
       locationEn: "Chuy Region",
       image:
-        "https://images.pexels.com/photos/16498845/pexels-photo-16498845.jpeg",
+        "https://tourist.kg/wp-content/uploads/2023/07/1408790825_old-burana-tower-1024x536.jpg",
       period: t("home.featured.periods.9th", {
         defaultValue: "IX-XI кылым / 9th-11th Century",
       }),
@@ -86,8 +86,7 @@ const HomePage = () => {
       locationRu: "Нарынская область",
       locationKg: "Нарын облусу",
       locationEn: "Naryn Region",
-      image:
-        "https://images.pexels.com/photos/29365324/pexels-photo-29365324.jpeg",
+      image: "https://myway.kg/u/media/jpeg/1CKbMcbgETUpYD1tHr5QDu_med.jpg",
       period: t("home.featured.periods.15th", {
         defaultValue: "XV кылым / 15th Century",
       }),
@@ -106,8 +105,7 @@ const HomePage = () => {
       locationRu: "Джалал-Абадская область",
       locationKg: "Жалал-Абад облусу",
       locationEn: "Jalal-Abad Region",
-      image:
-        "https://images.pexels.com/photos/28354402/pexels-photo-28354402.jpeg",
+      image: "https://too.kg/wp-content/uploads/1017110576.jpg",
       period: t("home.featured.periods.bronze", {
         defaultValue: "Коло доору / Bronze Age",
       }),
@@ -116,7 +114,6 @@ const HomePage = () => {
       periodEn: "Bronze Age",
     },
   ];
-
   return (
     <div className="overflow-hidden">
       {/* Hero Section with Amanat Background */}
